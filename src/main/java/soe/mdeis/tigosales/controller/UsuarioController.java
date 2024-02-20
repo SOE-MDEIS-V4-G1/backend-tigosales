@@ -48,7 +48,7 @@ public class UsuarioController {
 
     @GetMapping("/ci")
     public ResponseEntity<?> getClienteByCi(@RequestParam("ci") String ci) {
-        Optional<Usuario> usuario = usuarioService.findByCi(ci);
+        Optional<Usuario> usuario = usuarioService.findOneByCi(ci);
         if (usuario.isEmpty()) {
             return ResponseEntity.notFound().build();
         }

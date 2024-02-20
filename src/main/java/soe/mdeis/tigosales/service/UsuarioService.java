@@ -23,8 +23,8 @@ public class UsuarioService {
         return usuarioRepository.findAll();
     }
 
-    public Optional<Usuario> findByCi(String ci) {
-        return usuarioRepository.findByCi(ci);
+    public Optional<Usuario> findOneByCi(String ci) {
+        return usuarioRepository.findOneByCi(ci);
     }
 
     public Optional<Usuario> findById(long id) {
@@ -32,7 +32,7 @@ public class UsuarioService {
     }
 
     public boolean existByCi(String ci) {
-        return !usuarioRepository.findByCi(ci).isEmpty();
+        return !usuarioRepository.findOneByCi(ci).isEmpty();
     }
 
     public boolean existById(long id) {
