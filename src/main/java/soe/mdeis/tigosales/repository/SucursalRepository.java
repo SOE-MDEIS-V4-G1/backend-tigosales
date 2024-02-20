@@ -8,7 +8,8 @@ import soe.mdeis.tigosales.model.Sucursal;
 
 public interface SucursalRepository extends JpaRepository<Sucursal, Long> {
 
+    boolean existsById(long id);
+
     Optional<Sucursal> findOneByNombre(String nombre);
 
-    boolean existsById(long id);
 }
