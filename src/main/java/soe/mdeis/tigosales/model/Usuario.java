@@ -2,6 +2,8 @@ package soe.mdeis.tigosales.model;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -26,4 +28,7 @@ public class Usuario extends Persona {
     private TipoUsuario tipoUsuario;
 
     private boolean activo;
+    @ManyToOne
+    @JoinColumn(name = "sucursal_id")
+    private Sucursal sucursal;
 }
