@@ -31,6 +31,10 @@ public class UsuarioService {
         return usuarioRepository.findById(id);
     }
 
+    public Optional<Usuario> findOneByUserAndPassword(String user, String password) {
+        return usuarioRepository.findOneByUserAndPassword(user, password);
+    }
+
     public boolean existByCi(String ci) {
         return !usuarioRepository.findOneByCi(ci).isEmpty();
     }
