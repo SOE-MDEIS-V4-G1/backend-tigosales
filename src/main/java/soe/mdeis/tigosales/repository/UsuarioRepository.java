@@ -3,7 +3,7 @@ package soe.mdeis.tigosales.repository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import soe.mdeis.tigosales.model.entity.Usuario;
+import soe.mdeis.tigosales.model.Usuario;
 
 import java.util.Optional;
 

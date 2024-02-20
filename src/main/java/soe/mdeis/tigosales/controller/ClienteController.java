@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import io.micrometer.common.util.StringUtils;
 import soe.mdeis.tigosales.dto.ClienteDto;
-import soe.mdeis.tigosales.model.entity.Cliente;
+import soe.mdeis.tigosales.model.Cliente;
 import soe.mdeis.tigosales.service.ClienteService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;

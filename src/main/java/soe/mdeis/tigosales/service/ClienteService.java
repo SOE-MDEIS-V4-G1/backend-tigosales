@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 
 import jakarta.transaction.Transactional;
 import soe.mdeis.tigosales.dto.ClienteDto;
-import soe.mdeis.tigosales.model.entity.Cliente;
+import soe.mdeis.tigosales.model.Cliente;
 import soe.mdeis.tigosales.repository.ClienteRepository;
 
 @Service

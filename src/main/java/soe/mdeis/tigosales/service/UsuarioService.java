@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import jakarta.transaction.Transactional;
 import soe.mdeis.tigosales.dto.UsuarioDto;
 import soe.mdeis.tigosales.enums.Enums.TipoUsuario;
-import soe.mdeis.tigosales.model.entity.Usuario;
+import soe.mdeis.tigosales.model.Usuario;
 import soe.mdeis.tigosales.repository.UsuarioRepository;
 
 @Service

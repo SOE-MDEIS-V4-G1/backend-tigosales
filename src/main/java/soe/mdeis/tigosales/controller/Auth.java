@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import io.micrometer.common.util.StringUtils;
 import soe.mdeis.tigosales.dto.LoginDto;
-import soe.mdeis.tigosales.model.entity.Usuario;
+import soe.mdeis.tigosales.model.Usuario;
 import soe.mdeis.tigosales.service.UsuarioService;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;

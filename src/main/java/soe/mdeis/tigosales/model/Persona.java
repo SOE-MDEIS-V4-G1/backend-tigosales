@@ -1,4 +1,4 @@
-package soe.mdeis.tigosales.model.entity;
+package soe.mdeis.tigosales.model;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
