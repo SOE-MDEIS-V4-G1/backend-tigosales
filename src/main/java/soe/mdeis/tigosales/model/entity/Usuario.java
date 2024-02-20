@@ -17,7 +17,7 @@ import soe.mdeis.tigosales.enums.Enums.TipoUsuario;
 @Table(name = "usuarios")
 public class Usuario extends Persona {
 
-    @Column(length = 20, nullable = false)
+    @Column(length = 20, nullable = false, unique = true)
     private String user;
 
     @Column(length = 120, nullable = false)
