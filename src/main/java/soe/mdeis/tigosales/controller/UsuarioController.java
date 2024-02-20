@@ -112,6 +112,9 @@ public class UsuarioController {
                 && !usuarioDto.getTipo().toLowerCase().equals("vendedor")) {
             return ResponseEntity.badRequest().body("El tipo solo puede ser: admin, vendedor");
         }
+        if (usuarioService.findById(id).isEmpty()) {
+            return ResponseEntity.badRequest().body("No existe usuario con id " + id);
+        }
         Usuario updatedUsuario = usuarioService.update(id, usuarioDto);
         if (updatedUsuario != null) {
             return ResponseEntity.ok(updatedUsuario);
