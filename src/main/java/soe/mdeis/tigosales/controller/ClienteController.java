@@ -45,6 +45,16 @@ public class ClienteController {
         return new ResponseEntity<>(cliente, HttpStatus.OK);
     }
 
+    @GetMapping("/ruta/{id}")
+    public ResponseEntity<?> getMethodName(@PathVariable Long id) {
+        try {
+            List<Cliente> clientes = clienteService.findByRuta(id);
+            return new ResponseEntity<>(clientes, HttpStatus.OK);
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body("La Ruta indicada es incorrecta");
+        }
+    }
+
     @GetMapping("/ci")
     public ResponseEntity<?> getClienteByCi(@RequestParam("ci") String ci) {
         Optional<Cliente> cliente = clienteService.findByCi(ci);

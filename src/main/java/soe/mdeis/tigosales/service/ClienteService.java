@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import jakarta.transaction.Transactional;
 import soe.mdeis.tigosales.dto.ClienteDto;
 import soe.mdeis.tigosales.model.Cliente;
+import soe.mdeis.tigosales.model.Ruta;
 import soe.mdeis.tigosales.repository.ClienteRepository;
 
 @Service
@@ -18,8 +19,19 @@ public class ClienteService {
     @Autowired
     private ClienteRepository clienteRepositorio;
 
+    @Autowired
+    private RutaService rutaService;
+
     public List<Cliente> list() {
         return clienteRepositorio.findAll();
+    }
+
+    public List<Cliente> findByRuta(long id_ruta) throws Exception {
+        Optional<Ruta> ruta = rutaService.findById(id_ruta);
+        if (ruta.isEmpty()) {
+            throw new Exception("No se encontró la ruta");
+        }
+        return clienteRepositorio.findByRuta(ruta.get());
     }
 
     public Optional<Cliente> findByCi(String ci) {
@@ -45,6 +57,10 @@ public class ClienteService {
         cliente.setApellido(clientedDto.getApellido());
         cliente.setDireccion(clientedDto.getDireccion());
         cliente.setTelefono(clientedDto.getTelefono());
+        if (clientedDto.getRuta() != 0) {
+            Optional<Ruta> ruta = rutaService.findById(clientedDto.getRuta());
+            cliente.setRuta(ruta.get());
+        }
         return clienteRepositorio.save(cliente);
     }
 
@@ -56,6 +72,10 @@ public class ClienteService {
         cliente.setApellido(clientedDto.getApellido());
         cliente.setDireccion(clientedDto.getDireccion());
         cliente.setTelefono(clientedDto.getTelefono());
+        if (clientedDto.getRuta() != 0) {
+            Optional<Ruta> ruta = rutaService.findById(clientedDto.getRuta());
+            cliente.setRuta(ruta.get());
+        }
         return clienteRepositorio.save(cliente);
     }
 

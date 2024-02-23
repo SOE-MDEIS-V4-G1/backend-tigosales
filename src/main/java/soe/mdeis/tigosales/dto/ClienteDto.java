@@ -20,4 +20,6 @@ public class ClienteDto {
     private String direccion;
 
     private String telefono;
+
+    private long ruta;
 }
