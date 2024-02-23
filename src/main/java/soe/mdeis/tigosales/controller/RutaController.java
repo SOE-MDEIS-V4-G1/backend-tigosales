@@ -49,8 +49,13 @@ public class RutaController {
             return ResponseEntity.badRequest().body("El nombre es Obligatorio");
         }
 
-        Ruta ruta = rutaService.save(rutaDto);
-        return ResponseEntity.ok(ruta);
+        Ruta ruta;
+        try {
+            ruta = rutaService.save(rutaDto);
+            return ResponseEntity.ok(ruta);
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body("La sucursal indicada no es válida");
+        }
     }
 
     @PutMapping("/{id}")
@@ -58,11 +63,15 @@ public class RutaController {
         if (StringUtils.isBlank(rutaDto.getNombre())) {
             return ResponseEntity.badRequest().body("El nombre es Obligatorio");
         }
-        Ruta updatedRuta = rutaService.update(id, rutaDto);
-        if (updatedRuta != null) {
-            return ResponseEntity.ok(updatedRuta);
-        } else {
-            return ResponseEntity.notFound().build();
+        try {
+            Ruta updatedRuta = rutaService.update(id, rutaDto);
+            if (updatedRuta != null) {
+                return ResponseEntity.ok(updatedRuta);
+            } else {
+                return ResponseEntity.notFound().build();
+            }
+        } catch (Exception ignored) {
+            return ResponseEntity.badRequest().body("La sucursal indicada no es valida");
         }
     }
 

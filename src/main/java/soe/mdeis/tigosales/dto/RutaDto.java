@@ -12,4 +12,6 @@ import lombok.Setter;
 public class RutaDto {
 
     private String nombre;
+
+    private long sucursal;
 }
