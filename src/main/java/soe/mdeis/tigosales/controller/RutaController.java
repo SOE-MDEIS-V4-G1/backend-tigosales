@@ -35,12 +35,22 @@ public class RutaController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<?> getById(@PathVariable("id") Long id) {
+    public ResponseEntity<?> getById(@PathVariable("id") long id) {
         if (!rutaService.existById(id)) {
             return ResponseEntity.notFound().build();
         }
         Ruta ruta = rutaService.findById(id).get();
         return new ResponseEntity<>(ruta, HttpStatus.OK);
+    }
+
+    @GetMapping("/sucursal/{id}")
+    public ResponseEntity<?> getBySucursal(@PathVariable("id") Long id) {
+        try {
+            List<Ruta> lista = rutaService.getBySucursal(id);
+            return new ResponseEntity<>(lista, HttpStatus.OK);
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body("No se ha encontrado la Sucursal");
+        }
     }
 
     @PostMapping
