@@ -79,13 +79,16 @@ public class UsuarioController {
                 && !usuarioDto.getTipo().toLowerCase().equals("vendedor")) {
             return ResponseEntity.badRequest().body("El tipo solo puede ser: admin, vendedor");
         }
-
         if (usuarioService.existByCi(usuarioDto.getCi())) {
             return ResponseEntity.badRequest().body("El CI ya existe en la base de datos");
         }
 
-        Usuario usuario = usuarioService.save(usuarioDto);
-        return ResponseEntity.ok(usuario);
+        try {
+            Usuario usuario = usuarioService.save(usuarioDto);
+            return ResponseEntity.ok(usuario);
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body("No se pudo Registrar " + e.getMessage());
+        }
     }
 
     @PutMapping("/{id}")
@@ -115,11 +118,16 @@ public class UsuarioController {
         if (usuarioService.findById(id).isEmpty()) {
             return ResponseEntity.badRequest().body("No existe usuario con id " + id);
         }
-        Usuario updatedUsuario = usuarioService.update(id, usuarioDto);
-        if (updatedUsuario != null) {
-            return ResponseEntity.ok(updatedUsuario);
-        } else {
-            return ResponseEntity.notFound().build();
+        Usuario updatedUsuario;
+        try {
+            updatedUsuario = usuarioService.update(id, usuarioDto);
+            if (updatedUsuario != null) {
+                return ResponseEntity.ok(updatedUsuario);
+            } else {
+                return ResponseEntity.notFound().build();
+            }
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body("No se pudo Registrar " + e.getMessage());
         }
     }
 
