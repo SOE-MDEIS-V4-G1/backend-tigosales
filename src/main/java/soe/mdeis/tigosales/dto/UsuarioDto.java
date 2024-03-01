@@ -24,4 +24,6 @@ public class UsuarioDto {
     private String tipo;
 
     private boolean activo;
+
+    private long ruta;
 }
