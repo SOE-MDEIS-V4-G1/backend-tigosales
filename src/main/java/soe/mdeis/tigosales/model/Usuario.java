@@ -30,12 +30,12 @@ public class Usuario extends Persona {
     private TipoUsuario tipoUsuario;
 
     private boolean activo;
+
     @ManyToOne
     @JoinColumn(name = "sucursal_id")
     private Sucursal sucursal;
 
     @OneToOne
-    @MapsId
     @JoinColumn(name = "ruta_id", nullable = true)
     private Ruta ruta;
 }
