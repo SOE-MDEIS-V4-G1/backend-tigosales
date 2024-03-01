@@ -9,7 +9,9 @@ import org.springframework.stereotype.Service;
 import jakarta.transaction.Transactional;
 import soe.mdeis.tigosales.dto.UsuarioDto;
 import soe.mdeis.tigosales.enums.Enums.TipoUsuario;
+import soe.mdeis.tigosales.model.Ruta;
 import soe.mdeis.tigosales.model.Usuario;
+import soe.mdeis.tigosales.repository.RutaRepository;
 import soe.mdeis.tigosales.repository.UsuarioRepository;
 
 @Service
@@ -18,6 +20,9 @@ public class UsuarioService {
 
     @Autowired
     private UsuarioRepository usuarioRepository;
+
+    @Autowired
+    private RutaService rutaService;
 
     public List<Usuario> list() {
         return usuarioRepository.findAll();
@@ -43,7 +48,11 @@ public class UsuarioService {
         return !usuarioRepository.findById(id).isEmpty();
     }
 
-    public Usuario save(UsuarioDto usuarioDto) {
+    public Usuario save(UsuarioDto usuarioDto) throws Exception {
+        Optional<Ruta> ruta = rutaService.findById(usuarioDto.getRuta());
+        if (ruta.isEmpty()) {
+            throw new Exception("El id de la ruta no es valido");
+        }
         Usuario usuario = new Usuario();
         usuario.setCi(usuarioDto.getCi());
         usuario.setNombre(usuarioDto.getNombre());
@@ -51,11 +60,16 @@ public class UsuarioService {
         usuario.setUser(usuarioDto.getUser());
         usuario.setPassword(usuarioDto.getPassword());
         usuario.setTipoUsuario(TipoUsuario.valueOf(usuarioDto.getTipo().toUpperCase()));
+        usuario.setRuta(ruta.get());
         usuario.setActivo(usuarioDto.isActivo());
         return usuarioRepository.save(usuario);
     }
 
-    public Usuario update(Long id, UsuarioDto usuarioDto) {
+    public Usuario update(Long id, UsuarioDto usuarioDto) throws Exception {
+        Optional<Ruta> ruta = rutaService.findById(usuarioDto.getRuta());
+        if (ruta.isEmpty()) {
+            throw new Exception("El id de la ruta no es valido");
+        }
         Usuario usuario = new Usuario();
         usuario.setId(id);
         usuario.setCi(usuarioDto.getCi());
@@ -65,6 +79,7 @@ public class UsuarioService {
         usuario.setPassword(usuarioDto.getPassword());
         usuario.setTipoUsuario(TipoUsuario.valueOf(usuarioDto.getTipo().toUpperCase()));
         usuario.setActivo(usuarioDto.isActivo());
+        usuario.setRuta(ruta.get());
         return usuarioRepository.save(usuario);
     }
 
