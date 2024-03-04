@@ -11,7 +11,6 @@ import soe.mdeis.tigosales.dto.UsuarioDto;
 import soe.mdeis.tigosales.enums.Enums.TipoUsuario;
 import soe.mdeis.tigosales.model.Ruta;
 import soe.mdeis.tigosales.model.Usuario;
-import soe.mdeis.tigosales.repository.RutaRepository;
 import soe.mdeis.tigosales.repository.UsuarioRepository;
 
 @Service

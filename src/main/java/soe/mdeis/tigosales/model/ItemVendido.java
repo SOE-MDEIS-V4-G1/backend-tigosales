@@ -3,7 +3,6 @@ package soe.mdeis.tigosales.model;
 import java.math.BigDecimal;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreType;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

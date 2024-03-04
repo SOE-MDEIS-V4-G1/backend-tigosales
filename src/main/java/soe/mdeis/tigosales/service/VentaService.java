@@ -12,7 +12,6 @@ import org.springframework.stereotype.Service;
 import jakarta.transaction.Transactional;
 import soe.mdeis.tigosales.dto.VentaDto;
 import soe.mdeis.tigosales.model.Cliente;
-import soe.mdeis.tigosales.model.Item;
 import soe.mdeis.tigosales.model.ItemVendido;
 import soe.mdeis.tigosales.model.Usuario;
 import soe.mdeis.tigosales.model.Venta;
